@@ -62,7 +62,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .go{margin-top:auto;padding-top:8px;font:700 14px/1 var(--body);color:var(--ink);width:max-content;max-width:100%;overflow-wrap:anywhere;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:4px}
 .codebox{border-left:3px dashed var(--edge);padding:16px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:10px;min-width:150px;text-align:center}
 .copy{font:400 14px/1 var(--display);text-transform:uppercase;padding:12px 14px;background:#111;color:#fff;border:3px solid var(--edge);cursor:pointer;box-shadow:3px 3px 0 var(--yellow);transition:transform .1s,box-shadow .1s;overflow-wrap:anywhere}
-.copy.done{background:var(--yellow);color:#111;border-color:#111}
+.copy.done{background:var(--yellow);color:#111;border-color:#111;animation:pop .35s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.12) rotate(-2deg)}100%{transform:scale(1)}}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
 .nocode{font-size:13px;color:var(--muted)}
 .empty{border:3px dashed var(--edge);padding:24px;text-align:center;color:var(--muted)}
 footer{font-size:13px;color:var(--muted);border-top:3px solid var(--edge);padding-top:14px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;text-align:left}
@@ -214,11 +216,44 @@ $("#filters").addEventListener("click", e => {
 });
 $("#main").addEventListener("click", e => {
   const b = e.target.closest(".copy"); if (!b) return;
-  const ok = () => { b.textContent = "Copied!"; b.classList.add("done"); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
+  const ok = () => { b.textContent = "Copied!"; b.classList.remove("done"); void b.offsetWidth; b.classList.add("done"); confetti(b); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
   const fallback = () => { b.textContent = b.dataset.code; b.style.userSelect = "all"; };
   try { navigator.clipboard.writeText(b.dataset.code).then(ok, fallback); } catch(err) { fallback(); }
 });
 render();
+
+/* ---------- confetti on copy ---------- */
+function confetti(el){
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let cv = document.getElementById("confetti");
+  if (!cv) { cv = document.createElement("canvas"); cv.id = "confetti"; cv.setAttribute("aria-hidden", "true"); document.body.appendChild(cv); }
+  const dpr = window.devicePixelRatio || 1, W = innerWidth, H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const r = el.getBoundingClientRect(), x0 = r.left + r.width / 2, y0 = r.top + r.height / 2;
+  const colors = ["#FFD23F", "#2340D9", "#FF5B3A", "#5BE0A4", "#111111", "#FF4F8B"];
+  const bits = Array.from({ length: 90 }, () => {
+    const a = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.4, v = 6 + Math.random() * 9;
+    return { x: x0, y: y0, vx: Math.cos(a) * v, vy: Math.sin(a) * v, w: 6 + Math.random() * 6, h: 4 + Math.random() * 8,
+      rot: Math.random() * 6, vr: (Math.random() - .5) * .4, c: colors[Math.random() * colors.length | 0], round: Math.random() < .25 };
+  });
+  const t0 = performance.now();
+  cancelAnimationFrame(confetti.raf);
+  (function frame(t){
+    const life = (t - t0) / 1400;
+    ctx.clearRect(0, 0, W, H);
+    if (life >= 1) { ctx.clearRect(0, 0, W, H); return; }
+    ctx.globalAlpha = life > .7 ? 1 - (life - .7) / .3 : 1;
+    for (const p of bits) {
+      p.vy += .35; p.vx *= .985; p.vy *= .985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.c;
+      if (p.round) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill(); }
+      else ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    confetti.raf = requestAnimationFrame(frame);
+  })(t0);
+}
 
 /* ---------- admin (owner / editors only) ---------- */
 let artifactApi = null, sampleApi = null, editingId = null, dirty = false, askText = "", askSaid = "", askBusy = false;
