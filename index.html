@@ -65,6 +65,26 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .copy.done{background:var(--yellow);color:#111;border-color:#111;animation:pop .35s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.12) rotate(-2deg)}100%{transform:scale(1)}}
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+/* ---- ragdoll cat ---- */
+.cat{position:fixed;bottom:0;z-index:60;width:170px;pointer-events:none;animation:catMove 4.6s cubic-bezier(.45,.05,.3,1) forwards;padding-bottom:env(safe-area-inset-bottom,0px)}
+.cat svg{display:block;width:170px;height:auto;overflow:visible}
+.cat .head{transform-origin:80px 100px;transform-box:view-box;animation:catHead 4.6s ease-in-out forwards}
+.cat .paw{transform-origin:92px 124px;transform-box:view-box;animation:catPaw 4.6s ease-in-out forwards}
+.cat .tongue{opacity:0;animation:catTongue 4.6s linear forwards}
+.cat .eyes{transform-origin:80px 68px;transform-box:view-box;animation:catEyes 4.6s ease-in-out forwards}
+.cat .tail{transform-origin:108px 150px;transform-box:view-box;animation:catTail .7s ease-in-out infinite alternate}
+.cat .walk{animation:catBob .22s ease-in-out 4 alternate}
+.cat .bubble{position:absolute;left:50%;bottom:100%;margin-bottom:-6px;transform:translateX(-30%) scale(.6);opacity:0;white-space:nowrap;font:400 17px/1 var(--display);text-transform:uppercase;background:#fff;color:#111;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:10px 12px;animation:catBubble 4.6s ease-out forwards}
+.cat .bubble::after{content:"";position:absolute;left:24px;top:100%;border:9px solid transparent;border-top-color:#111}
+@keyframes catMove{0%{transform:translateX(-120vw)}16%{transform:translateX(0)}84%{transform:translateX(0)}100%{transform:translateX(120vw)}}
+@keyframes catBob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+@keyframes catHead{0%,18%{transform:rotate(0)}23%,46%{transform:rotate(9deg)}53%{transform:rotate(-5deg)}60%,100%{transform:rotate(0)}}
+@keyframes catPaw{0%,18%{transform:rotate(0)}24%{transform:rotate(160deg)}28%{transform:rotate(143deg)}32%{transform:rotate(160deg)}36%{transform:rotate(143deg)}40%{transform:rotate(160deg)}48%,100%{transform:rotate(0)}}
+@keyframes catTongue{0%,23%{opacity:0}25%{opacity:1}27%,31%{opacity:0}33%{opacity:1}35%,39%{opacity:0}41%{opacity:1}43%,100%{opacity:0}}
+@keyframes catEyes{0%,19%{transform:scaleY(1)}22%,46%{transform:scaleY(.2)}51%{transform:scaleY(1.12)}68%{transform:scaleY(1)}70%{transform:scaleY(.1)}72%,100%{transform:scaleY(1)}}
+@keyframes catTail{from{transform:rotate(-6deg)}to{transform:rotate(8deg)}}
+@keyframes catBubble{0%,50%{opacity:0;transform:translateX(-30%) scale(.6)}55%{opacity:1;transform:translateX(-30%) scale(1.08)}58%,80%{opacity:1;transform:translateX(-30%) scale(1)}84%,100%{opacity:0;transform:translateX(-30%) scale(1)}}
+
 .nocode{font-size:13px;color:var(--muted)}
 .empty{border:3px dashed var(--edge);padding:24px;text-align:center;color:var(--muted)}
 footer{font-size:13px;color:var(--muted);border-top:3px solid var(--edge);padding-top:14px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;text-align:left}
@@ -216,7 +236,7 @@ $("#filters").addEventListener("click", e => {
 });
 $("#main").addEventListener("click", e => {
   const b = e.target.closest(".copy"); if (!b) return;
-  const ok = () => { b.textContent = "Copied!"; b.classList.remove("done"); void b.offsetWidth; b.classList.add("done"); confetti(b); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
+  const ok = () => { b.textContent = "Copied!"; b.classList.remove("done"); void b.offsetWidth; b.classList.add("done"); confetti(b); catThanks(b); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
   const fallback = () => { b.textContent = b.dataset.code; b.style.userSelect = "all"; };
   try { navigator.clipboard.writeText(b.dataset.code).then(ok, fallback); } catch(err) { fallback(); }
 });
@@ -253,6 +273,46 @@ function confetti(el){
     }
     confetti.raf = requestAnimationFrame(frame);
   })(t0);
+}
+
+/* ---------- ragdoll cat says thanks ---------- */
+const CAT_SVG = `<svg viewBox="0 0 160 172" aria-hidden="true">
+  <defs><radialGradient id="catMask" cx="50%" cy="48%" r="55%"><stop offset="0" stop-color="#5A3D2E"/><stop offset=".55" stop-color="#7A5A48" stop-opacity=".85"/><stop offset="1" stop-color="#C9A98E" stop-opacity="0"/></radialGradient></defs>
+  <g class="walk">
+    <path class="tail" d="M106 150 C150 152 162 112 144 90 C134 78 122 88 131 99 C142 113 132 136 102 140 Z" fill="#6E4E3E"/>
+    <ellipse cx="80" cy="128" rx="44" ry="38" fill="#F2E6D6"/>
+    <ellipse cx="80" cy="120" rx="26" ry="28" fill="#FFFFFF"/>
+    <ellipse cx="54" cy="162" rx="15" ry="8" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+    <ellipse cx="106" cy="162" rx="15" ry="8" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+    <ellipse cx="68" cy="152" rx="9" ry="14" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+    <g class="head">
+      <path d="M44 60 L50 20 L74 44 Z" fill="#5A3D2E"/><path d="M51 52 L54 30 L67 45 Z" fill="#E8A9A0"/>
+      <path d="M116 60 L110 20 L86 44 Z" fill="#5A3D2E"/><path d="M109 52 L106 30 L93 45 Z" fill="#E8A9A0"/>
+      <ellipse cx="80" cy="70" rx="40" ry="34" fill="#F2E6D6"/>
+      <ellipse cx="80" cy="73" rx="27" ry="24" fill="url(#catMask)"/>
+      <ellipse cx="80" cy="95" rx="30" ry="11" fill="#FFFFFF"/>
+      <g class="eyes">
+        <ellipse cx="67" cy="68" rx="7.5" ry="8.5" fill="#5B9BEA"/><ellipse cx="67" cy="69" rx="2.6" ry="6" fill="#111"/><circle cx="69.5" cy="65" r="2" fill="#fff"/>
+        <ellipse cx="93" cy="68" rx="7.5" ry="8.5" fill="#5B9BEA"/><ellipse cx="93" cy="69" rx="2.6" ry="6" fill="#111"/><circle cx="95.5" cy="65" r="2" fill="#fff"/>
+      </g>
+      <path d="M75.5 80 L84.5 80 L80 85.5 Z" fill="#D98C8C"/>
+      <path d="M80 85.5 Q76.5 90 72 88.5 M80 85.5 Q83.5 90 88 88.5" stroke="#3A2A22" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <ellipse class="tongue" cx="80" cy="91" rx="3.6" ry="4.2" fill="#F08A9A"/>
+      <path d="M60 86 L32 81 M60 90 L33 92 M100 86 L128 81 M100 90 L127 92" stroke="#BFAE9C" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <ellipse class="paw" cx="92" cy="152" rx="9" ry="14" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+  </g>
+</svg>`;
+function catThanks(el){
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const old = document.querySelector(".cat"); if (old) old.remove();
+  const r = el.getBoundingClientRect();
+  const left = Math.max(8, Math.min(innerWidth - 178, r.left + r.width / 2 - 85));
+  const cat = document.createElement("div");
+  cat.className = "cat"; cat.style.left = left + "px";
+  cat.innerHTML = '<div class="bubble">Thanks, meow!</div>' + CAT_SVG;
+  document.body.appendChild(cat);
+  cat.addEventListener("animationend", e => { if (e.animationName === "catMove") cat.remove(); });
 }
 
 /* ---------- admin (owner / editors only) ---------- */
