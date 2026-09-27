@@ -66,16 +66,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.12) rotate(-2deg)}100%{transform:scale(1)}}
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
 /* ---- ragdoll cat ---- */
-.cat{position:fixed;bottom:0;z-index:60;width:170px;pointer-events:none;animation:catMove 4.6s cubic-bezier(.45,.05,.3,1) forwards;padding-bottom:env(safe-area-inset-bottom,0px)}
-.cat svg{display:block;width:170px;height:auto;overflow:visible}
-.cat .head{transform-origin:80px 100px;transform-box:view-box;animation:catHead 4.6s ease-in-out forwards}
-.cat .paw{transform-origin:92px 124px;transform-box:view-box;animation:catPaw 4.6s ease-in-out forwards}
-.cat .tongue{opacity:0;animation:catTongue 4.6s linear forwards}
-.cat .eyes{transform-origin:80px 68px;transform-box:view-box;animation:catEyes 4.6s ease-in-out forwards}
-.cat .tail{transform-origin:108px 150px;transform-box:view-box;animation:catTail .7s ease-in-out infinite alternate}
-.cat .walk{animation:catBob .22s ease-in-out 4 alternate}
-.cat .bubble{position:absolute;left:50%;bottom:100%;margin-bottom:-6px;transform:translateX(-30%) scale(.6);opacity:0;white-space:nowrap;font:400 17px/1 var(--display);text-transform:uppercase;background:#fff;color:#111;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:10px 12px;animation:catBubble 4.6s ease-out forwards}
-.cat .bubble::after{content:"";position:absolute;left:24px;top:100%;border:9px solid transparent;border-top-color:#111}
+.kitty{position:fixed;bottom:0;z-index:60;width:170px;pointer-events:none;animation:catMove 4.6s cubic-bezier(.45,.05,.3,1) forwards;padding-bottom:env(safe-area-inset-bottom,0px)}
+.kitty svg{display:block;width:170px;height:auto;overflow:visible}
+.kitty .head{transform-origin:80px 100px;transform-box:view-box;animation:catHead 4.6s ease-in-out forwards}
+.kitty .paw{transform-origin:92px 124px;transform-box:view-box;animation:catPaw 4.6s ease-in-out forwards}
+.kitty .tongue{opacity:0;animation:catTongue 4.6s linear forwards}
+.kitty .eyes{transform-origin:80px 68px;transform-box:view-box;animation:catEyes 4.6s ease-in-out forwards}
+.kitty .tail{transform-origin:108px 150px;transform-box:view-box;animation:catTail .7s ease-in-out infinite alternate}
+.kitty .walk{animation:catBob .22s ease-in-out 4 alternate}
+.kitty .bubble{position:absolute;left:50%;bottom:100%;margin-bottom:-6px;transform:translateX(-30%) scale(.6);opacity:0;white-space:nowrap;font:400 17px/1 var(--display);text-transform:uppercase;background:#fff;color:#111;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:10px 12px;animation:catBubble 4.6s ease-out forwards}
+.kitty .bubble::after{content:"";position:absolute;left:24px;top:100%;border:9px solid transparent;border-top-color:#111}
 @keyframes catMove{0%{transform:translateX(-120vw)}16%{transform:translateX(0)}84%{transform:translateX(0)}100%{transform:translateX(120vw)}}
 @keyframes catBob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
 @keyframes catHead{0%,18%{transform:rotate(0)}23%,46%{transform:rotate(9deg)}53%{transform:rotate(-5deg)}60%,100%{transform:rotate(0)}}
@@ -305,11 +305,11 @@ const CAT_SVG = `<svg viewBox="0 0 160 172" aria-hidden="true">
 </svg>`;
 function catThanks(el){
   if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const old = document.querySelector(".cat"); if (old) old.remove();
+  const old = document.querySelector(".kitty"); if (old) old.remove();
   const r = el.getBoundingClientRect();
   const left = Math.max(8, Math.min(innerWidth - 178, r.left + r.width / 2 - 85));
   const cat = document.createElement("div");
-  cat.className = "cat"; cat.style.left = left + "px";
+  cat.className = "kitty"; cat.style.left = left + "px";
   cat.innerHTML = '<div class="bubble">Thanks, meow!</div>' + CAT_SVG;
   document.body.appendChild(cat);
   cat.addEventListener("animationend", e => { if (e.animationName === "catMove") cat.remove(); });
