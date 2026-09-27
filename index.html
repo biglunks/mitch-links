@@ -1,0 +1,468 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="The apps, tools and services Clay Mitchell actually uses, with his referral codes."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>Mitch Links</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Rubik:wght@400;500;700&family=JetBrains+Mono:wght@700&display=swap">
+<style id="css">
+:root{
+  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#111111; --muted:#4A4A4A; --edge:#111111; --shadow:#111111;
+  --blue:#2340D9; --yellow:#FFD23F; --chip:#F2F2F2; --field:#FFFFFF; --danger:#D7263D;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#15151A; --paper:#1F1F26; --ink:#F4F4F6; --muted:#B8B8C2; --edge:#F4F4F6; --shadow:#FFD23F;
+    --blue:#6E86FF; --chip:#2A2A33; --field:#15151A; --danger:#FF6B7D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#15151A; --paper:#1F1F26; --ink:#F4F4F6; --muted:#B8B8C2; --edge:#F4F4F6; --shadow:#FFD23F;
+  --blue:#6E86FF; --chip:#2A2A33; --field:#15151A; --danger:#FF6B7D;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding-inline:16px;padding-block:16px 64px}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:grid;gap:14px;justify-items:start;text-align:left}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(52px,12vw,112px);line-height:.9;margin:0;text-transform:uppercase;letter-spacing:-.02em;text-wrap:balance}
+h1 span{background:var(--blue);color:#fff;padding:0 .12em;display:inline-block;margin-top:.08em;box-shadow:6px 6px 0 var(--shadow)}
+.lede{max-width:56ch;margin:0;font-size:18px}
+.fine{font-size:13px;color:var(--muted);margin:0;max-width:70ch}
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+.chip{font:700 14px/1 var(--body);padding:10px 14px;border:3px solid var(--edge);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--shadow);transition:transform .1s,box-shadow .1s}
+.chip[aria-pressed="true"]{background:var(--yellow);color:#111;border-color:#111}
+.chip:active,.copy:active,.pbtn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--shadow)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.cat{display:grid;gap:16px}
+.cat h2{font:400 22px/1 var(--display);text-transform:uppercase;margin:0;text-align:left}
+.list{display:grid;gap:22px}
+.card{display:grid;grid-template-columns:230px 1fr auto;align-items:stretch;background:var(--paper);border:3px solid var(--edge);box-shadow:7px 7px 0 var(--shadow);transition:transform .12s,box-shadow .12s}
+.card:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--shadow)}
+.snip{border-right:3px solid var(--edge);display:flex;flex-direction:column;overflow:hidden;text-decoration:none;min-width:0}
+.bar{display:flex;align-items:center;gap:5px;padding:7px 8px;background:#E9E9EC;border-bottom:2px solid #111}
+.bar i{width:8px;height:8px;border-radius:50%;background:#111;opacity:.25;flex:none}
+.url{flex:1;min-width:0;margin-left:4px;background:#fff;border-radius:4px;padding:2px 7px;font:500 11px/1.4 var(--body);color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:118px}
+.nav{display:flex;align-items:center;gap:8px}
+.logo{font:700 15px/1 var(--body);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.nav s{flex:1}
+.nav u{display:block;width:22px;height:4px;border-radius:2px;background:currentColor;opacity:.35;flex:none}
+.nav b{font:700 10px/1 var(--body);padding:5px 8px;border-radius:20px;white-space:nowrap}
+.big{font:700 17px/1.15 var(--body);letter-spacing:-.01em;margin-top:auto}
+.lines{display:grid;gap:5px}
+.lines u{display:block;height:5px;border-radius:3px;background:currentColor;opacity:.25}
+.info{padding:16px 18px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.name{font:400 22px/1.1 var(--display);margin:0;text-transform:uppercase;display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-wrap:anywhere}
+.tag{font:700 10px/1 var(--mono);letter-spacing:.06em;padding:4px 6px;background:var(--chip);color:var(--muted);border:1.5px solid currentColor}
+.what{margin:0;color:var(--muted);font-size:15px}
+.perk{margin:0;font-weight:700;font-size:14px}
+.go{margin-top:auto;padding-top:8px;font:700 14px/1 var(--body);color:var(--ink);width:max-content;max-width:100%;overflow-wrap:anywhere;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:4px}
+.codebox{border-left:3px dashed var(--edge);padding:16px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:10px;min-width:150px;text-align:center}
+.copy{font:400 14px/1 var(--display);text-transform:uppercase;padding:12px 14px;background:#111;color:#fff;border:3px solid var(--edge);cursor:pointer;box-shadow:3px 3px 0 var(--yellow);transition:transform .1s,box-shadow .1s;overflow-wrap:anywhere}
+.copy.done{background:var(--yellow);color:#111;border-color:#111}
+.nocode{font-size:13px;color:var(--muted)}
+.empty{border:3px dashed var(--edge);padding:24px;text-align:center;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:3px solid var(--edge);padding-top:14px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;text-align:left}
+@media (max-width:720px){
+  .card{grid-template-columns:1fr}
+  .snip{border-right:0;border-bottom:3px solid var(--edge)}
+  .hero{min-height:100px}
+  .codebox{border-left:0;border-top:3px dashed var(--edge);align-items:stretch}
+}
+
+/* ---- admin ---- */
+.topbar{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:-12px;position:relative}
+.login{font:500 12px/1 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--muted);padding:6px 9px;cursor:pointer}
+.login:hover{color:var(--ink);border-color:var(--ink)}
+.note{position:absolute;top:calc(100% + 8px);right:0;z-index:10;width:min(280px,100%);background:var(--paper);border:3px solid var(--edge);box-shadow:4px 4px 0 var(--shadow);padding:12px;font-size:13px;margin:0}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:30;width:min(460px,100%);background:var(--paper);border-left:3px solid var(--edge);box-shadow:-10px 0 0 rgba(0,0,0,.08);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:3px solid var(--edge)}
+.dhead h2{font:400 20px/1 var(--display);text-transform:uppercase;margin:0}
+.dbody{flex:1;overflow:auto;padding:16px;display:grid;gap:20px;align-content:start}
+.dfoot{padding:12px 16px;border-top:3px solid var(--edge);display:grid;gap:8px}
+.pbtn{font:700 14px/1 var(--body);padding:11px 14px;border:3px solid var(--edge);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--shadow)}
+.pbtn.primary{background:var(--blue);color:#fff;border-color:var(--edge)}
+.pbtn.sm{padding:7px 9px;font-size:12px;box-shadow:2px 2px 0 var(--shadow)}
+.pbtn.danger{color:var(--danger)}
+.pbtn.danger.armed{background:var(--danger);color:#fff}
+.pbtn:disabled{opacity:.5;cursor:default}
+.xbtn{font:700 22px/1 var(--body);background:none;border:0;color:var(--ink);cursor:pointer;padding:4px 8px}
+.rows{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:8px;border:2px solid var(--edge);padding:8px 10px}
+.row .sw{width:18px;height:18px;border:2px solid #111;flex:none}
+.row .nm{flex:1;min-width:0;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .ct{font-size:12px;color:var(--muted);display:block;font-weight:400}
+.row .warn{font-size:12px;color:var(--danger);display:block;font-weight:700;white-space:normal}
+.row .acts{display:flex;gap:4px;flex:none}
+.sec{display:grid;gap:10px}
+.sec h3{font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:0;color:var(--muted)}
+.fld{display:grid;gap:4px;font-size:13px;font-weight:700}
+.fld input,.fld select{font:400 15px/1.3 var(--body);padding:9px 10px;border:2px solid var(--edge);background:var(--field);color:var(--ink);border-radius:0;width:100%}
+.fld small{font-weight:400;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fld input[type=color]{padding:2px;height:40px}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px}
+.ai{border:3px solid var(--edge);background:var(--chip);padding:12px;display:grid;gap:8px}
+.ai p{margin:0;font-size:13px;color:var(--muted)}
+.ask{border:3px solid var(--edge);background:var(--yellow);color:#111;padding:12px;display:grid;gap:8px;box-shadow:4px 4px 0 var(--shadow)}
+.ask h3{color:#111}
+.ask textarea{font:400 15px/1.4 var(--body);padding:9px 10px;border:2px solid #111;background:#fff;color:#111;border-radius:0;width:100%;min-height:78px;resize:vertical}
+.ask .pbtn{background:#111;color:#fff;border-color:#111}
+.ask .said{margin:0;font-size:14px;background:#fff;border:2px solid #111;padding:8px 10px}
+.msg{font-size:13px;margin:0;min-height:1.2em}
+.msg.err{color:var(--danger)}
+.msg.ok{color:var(--ink)}
+.dirty{font-size:12px;color:var(--muted);text-align:center;margin:0}
+@media (prefers-reduced-motion: reduce){.card,.chip,.copy{transition:none}.card:hover{transform:none}}
+</style>
+<script type="application/json" id="links-data">{
+ "updated": "Sep 27, 2026",
+ "categories": [
+  {"id": "money", "label": "Money & Crypto"},
+  {"id": "train", "label": "Training"},
+  {"id": "build", "label": "What I Build On"}
+ ],
+ "links": [
+  {"id": "coinbase", "cat": "money", "name": "Coinbase", "url": "https://www.coinbase.com/", "what": "Where I buy and hold crypto.", "perk": "Bonus crypto when you make your first trade", "code": "MITCHY", "example": true, "bg": "#FFFFFF", "fg": "#0A0B0D", "accent": "#0052FF", "headline": "The future of money is here"},
+  {"id": "kraken", "cat": "money", "name": "Kraken", "url": "https://www.kraken.com/", "what": "My other exchange, for trading and staking.", "perk": "Reward after your first trade", "code": "MITCHY", "example": true, "bg": "#7132F5", "fg": "#FFFFFF", "accent": "#FFFFFF", "headline": "Go pro with crypto"},
+  {"id": "bank", "cat": "money", "name": "Your Bank", "url": "https://yourbank.com/", "what": "Where my checking and savings live.", "perk": "Sign-up bonus for both of us", "code": "MITCHY", "example": true, "bg": "#F4F6F8", "fg": "#1B1B1B", "accent": "#1FA37A", "headline": "Banking with no fees"},
+  {"id": "training", "cat": "train", "name": "Training App", "url": "https://training.app/", "what": "The workout plan I'm running right now.", "perk": "First month off", "code": "MITCHY", "example": true, "bg": "#111111", "fg": "#FFFFFF", "accent": "#FF5B3A", "headline": "Train like you mean it"},
+  {"id": "host", "cat": "build", "name": "Website Host", "url": "https://host.dev/", "what": "Where I host the sites and apps I build.", "perk": "Free credits to start", "code": "", "example": true, "bg": "#0B1020", "fg": "#E6ECFF", "accent": "#5BE0A4", "headline": "Ship it tonight"}
+ ]
+}</script>
+<div id="app"></div>
+<script>
+(function(){
+const SELF = document.currentScript.textContent;
+const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Rubik:wght@400;500;700&family=JetBrains+Mono:wght@700&display=swap">';
+const RESET_FALLBACK = ':root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif;background:#fafafa}img{max-width:100%}[hidden]{display:none!important}';
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hex = v => /^#[0-9a-f]{6}$/i.test(v||"") ? v : null;
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40) || "item";
+const domainOf = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch(e) { return String(u||"").replace(/^https?:\/\//,"").replace(/^www\./,"").split("/")[0]; } };
+const safeUrl = u => /^https?:\/\//i.test(u||"") ? u : (u ? "https://" + u : "#");
+
+const saved = JSON.parse(document.getElementById("links-data").textContent);
+let data = JSON.parse(JSON.stringify(saved));   // what the page shows (the draft while editing)
+let active = "all";
+try { active = localStorage.getItem("ml-filter") || "all"; } catch(e) {}
+
+/* ---------- page shell ---------- */
+$("#app").innerHTML = `
+<div class="wrap">
+  <div class="topbar"><button class="login" id="login">Admin login</button><p class="note" id="note" hidden role="status"></p></div>
+  <header>
+    <h1>Mitch<br><span>Links</span></h1>
+    <p class="lede">You keep asking what I bank with, trade on, train with and build on. Here's all of it. Copy my code, tap the link, and we both usually get a bonus.</p>
+    <p class="fine">Heads up: these are referral or affiliate links, so I may earn a reward if you sign up. I only list things I actually use.</p>
+  </header>
+  <nav class="filters" id="filters" aria-label="Filter by category"></nav>
+  <main id="main" class="wrap" style="gap:36px;width:100%"></main>
+  <footer><span id="updated"></span><span>Code not working? Text Clay.</span></footer>
+</div>
+<aside class="drawer" id="drawer" hidden aria-label="Edit links"></aside>`;
+
+/* ---------- public view ---------- */
+function snippet(l){
+  const accent = hex(l.accent) || "#111111", bg = hex(l.bg) || "#FFFFFF", fg = hex(l.fg) || "#111111";
+  const btnText = accent.toUpperCase() === "#FFFFFF" ? bg : "#FFFFFF";
+  const logoColor = accent.toUpperCase() === fg.toUpperCase() || accent.toUpperCase() === "#FFFFFF" ? fg : accent;
+  return `<a class="snip" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener" aria-label="Open ${esc(l.name)}">
+    <div class="bar"><i></i><i></i><i></i><span class="url">${esc(domainOf(l.url))}</span></div>
+    <div class="hero" style="background:${bg};color:${fg}">
+      <div class="nav"><span class="logo" style="color:${logoColor}">${esc(String(l.name).toLowerCase())}</span><s></s><u></u><u></u><b style="background:${accent};color:${btnText}">Sign up</b></div>
+      <div class="big">${esc(l.headline || l.name)}</div>
+      <div class="lines"><u style="width:90%"></u><u style="width:65%"></u></div>
+    </div></a>`;
+}
+function card(l){
+  const code = l.code
+    ? `<button class="copy" id="copy-${esc(l.id)}" data-code="${esc(l.code)}">Copy code</button>`
+    : `<div class="nocode">No code needed.<br>The link does it.</div>`;
+  return `<article class="card">${snippet(l)}
+    <div class="info">
+      <h3 class="name">${esc(l.name)}${l.example ? '<span class="tag">EXAMPLE</span>' : ''}</h3>
+      ${l.what ? `<p class="what">${esc(l.what)}</p>` : ''}
+      ${l.perk ? `<p class="perk">${esc(l.perk)}</p>` : ''}
+      <a class="go" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">Go to ${esc(domainOf(l.url))} ↗</a>
+    </div>
+    <div class="codebox">${code}</div></article>`;
+}
+function render(){
+  const cats = data.categories;
+  if (active !== "all" && !cats.some(c => c.id === active)) active = "all";
+  const all = [{id:"all",label:"Everything",n:data.links.length}, ...cats.map(c => ({...c, n:data.links.filter(l => l.cat === c.id).length}))].filter(c => c.id === "all" || c.n);
+  $("#filters").innerHTML = all.map(c => `<button class="chip" id="f-${esc(c.id)}" data-id="${esc(c.id)}" aria-pressed="${c.id === active}">${esc(c.label)} · ${c.n}</button>`).join("");
+  const html = cats.filter(c => active === "all" || c.id === active).map(c => {
+    const items = data.links.filter(l => l.cat === c.id);
+    return items.length ? `<section class="cat"><h2>${esc(c.label)}</h2><div class="list">${items.map(card).join("")}</div></section>` : "";
+  }).join("");
+  $("#main").innerHTML = html || `<div class="empty">No links yet.</div>`;
+  $("#updated").textContent = data.updated ? "Updated " + data.updated : "";
+}
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  active = b.dataset.id; try { localStorage.setItem("ml-filter", active); } catch(e) {}
+  render();
+});
+$("#main").addEventListener("click", e => {
+  const b = e.target.closest(".copy"); if (!b) return;
+  const ok = () => { b.textContent = "Copied!"; b.classList.add("done"); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
+  const fallback = () => { b.textContent = b.dataset.code; b.style.userSelect = "all"; };
+  try { navigator.clipboard.writeText(b.dataset.code).then(ok, fallback); } catch(err) { fallback(); }
+});
+render();
+
+/* ---------- admin (owner / editors only) ---------- */
+let artifactApi = null, sampleApi = null, editingId = null, dirty = false, askText = "", askSaid = "", askBusy = false;
+
+function buildDoc(state){
+  const headStyle = document.head && document.head.querySelector("style");
+  const reset = (headStyle && headStyle.textContent) || RESET_FALLBACK;
+  const css = document.getElementById("css").textContent;
+  const json = JSON.stringify(state, null, 1).replace(/</g, "\\u003c");
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + reset + '</style></head><body>'
+    + "<title>Mitch Links</title>\n" + FONTS + '\n<style id="css">' + css + '</style>\n'
+    + '<script type="application/json" id="links-data">' + json + '<\/script>\n<div id="app"></div>\n<script>' + SELF + '<\/script>'
+    + '</body></html>';
+}
+
+function markDirty(){ dirty = true; render(); renderDrawer(); }
+
+function blankLink(){ return { id:"", cat:(data.categories[0]||{}).id || "", name:"", url:"", what:"", perk:"", code:"", example:false, bg:"#FFFFFF", fg:"#111111", accent:"#2340D9", headline:"" }; }
+
+function renderDrawer(msg, kind){
+  const d = $("#drawer");
+  const l = editingId === null ? null : (editingId === "__new" ? d._new : data.links.find(x => x.id === editingId));
+  const catOpts = data.categories.map(c => `<option value="${esc(c.id)}"${l && l.cat === c.id ? " selected" : ""}>${esc(c.label)}</option>`).join("") + `<option value="__new">+ New category…</option>`;
+  const rows = data.links.map((x, i) => `<div class="row">
+      <span class="sw" style="background:${hex(x.bg) || "#fff"}"></span>
+      <span class="nm">${esc(x.name || "Untitled")}<span class="ct">${esc((data.categories.find(c => c.id === x.cat) || {}).label || "No category")}</span>${x.code && !String(x.url || "").toLowerCase().includes(String(x.code).toLowerCase()) ? '<span class="warn">Link doesn\'t have your code in it yet</span>' : ""}</span>
+      <span class="acts">
+        <button class="pbtn sm" data-act="up" data-i="${i}" aria-label="Move up"${i === 0 ? " disabled" : ""}>↑</button>
+        <button class="pbtn sm" data-act="down" data-i="${i}" aria-label="Move down"${i === data.links.length - 1 ? " disabled" : ""}>↓</button>
+        <button class="pbtn sm" data-act="edit" data-i="${i}">Edit</button>
+        <button class="pbtn sm danger" data-act="del" data-i="${i}">Delete</button>
+      </span></div>`).join("");
+
+  const form = l ? `<div class="sec" id="form">
+      <h3>${editingId === "__new" ? "New link" : "Editing " + esc(l.name)}</h3>
+      ${sampleApi ? `<div class="ai"><p>Type the name or paste the link, then let Claude fill in the rest. You can change anything after.</p>
+        <button class="pbtn" id="autofill">Autofill with Claude</button></div>` : ""}
+      <label class="fld">Name<input id="f-name" value="${esc(l.name)}" placeholder="Coinbase"></label>
+      <label class="fld">Your referral link <small>Copy it from the app's "Invite friends" screen so your code is built in</small><input id="f-url" value="${esc(l.url)}" placeholder="https://coinbase.com/join/..."></label>
+      <label class="fld">Referral code <small>Leave blank if the link already has it</small><input id="f-code" value="${esc(l.code)}" placeholder="MITCHY"></label>
+      <div class="two">
+        <label class="fld">Category<select id="f-cat">${catOpts}</select></label>
+        <label class="fld" id="newcat-wrap" hidden>New category name<input id="f-newcat" placeholder="Banking"></label>
+      </div>
+      <label class="fld">What it is<input id="f-what" value="${esc(l.what)}" placeholder="Where I buy and hold crypto."></label>
+      <label class="fld">Perk for your friend<input id="f-perk" value="${esc(l.perk)}" placeholder="$10 in bitcoin after your first trade"></label>
+      <label class="fld">Header headline<input id="f-headline" value="${esc(l.headline)}" placeholder="The future of money is here"></label>
+      <div class="three">
+        <label class="fld">Header<input type="color" id="f-bg" value="${hex(l.bg) || "#ffffff"}"></label>
+        <label class="fld">Text<input type="color" id="f-fg" value="${hex(l.fg) || "#111111"}"></label>
+        <label class="fld">Brand<input type="color" id="f-accent" value="${hex(l.accent) || "#2340d9"}"></label>
+      </div>
+      <label class="chk"><input type="checkbox" id="f-example"${l.example ? " checked" : ""}> Show the EXAMPLE tag</label>
+      <div class="two"><button class="pbtn primary" id="apply">${editingId === "__new" ? "Add link" : "Update link"}</button><button class="pbtn" id="cancel">Cancel</button></div>
+    </div>` : `<button class="pbtn" id="add">+ Add a link</button>`;
+
+  d.innerHTML = `<div class="dhead"><h2>Edit links</h2><button class="xbtn" id="close" aria-label="Close">×</button></div>
+    <div class="dbody">
+      ${sampleApi ? `<div class="ask sec"><h3>Tell Claude what to change</h3>
+        <textarea id="ask-text" placeholder="Add my Coinbase link coinbase.com/join/abc with code MITCHY, and delete Your Bank">${esc(askText)}</textarea>
+        <button class="pbtn" id="ask-go"${askBusy ? " disabled" : ""}>${askBusy ? "Claude is working…" : "Make the change"}</button>
+        ${askSaid ? `<p class="said">${esc(askSaid)}</p>` : ""}</div>` : ""}
+      ${form}
+      <div class="sec"><h3>Your links (${data.links.length})</h3><div class="rows">${rows || '<p class="fine">No links yet.</p>'}</div></div>
+    </div>
+    <div class="dfoot">
+      <p class="msg ${kind || ""}" id="msg" role="status">${esc(msg || "")}</p>
+      <button class="pbtn primary" id="save"${dirty ? "" : " disabled"}>Save and publish</button>
+      <p class="dirty">${dirty ? "You have unsaved changes. Friends see them after you save." : "Everything is saved."}</p>
+    </div>`;
+  const sel = $("#f-cat");
+  if (sel) sel.addEventListener("change", () => { $("#newcat-wrap").hidden = sel.value !== "__new"; });
+}
+
+function readForm(){
+  const v = id => ($("#" + id)?.value || "").trim();
+  let cat = v("f-cat");
+  if (cat === "__new") {
+    const label = v("f-newcat");
+    if (!label) return { error: "Give the new category a name." };
+    cat = slug(label);
+    if (!data.categories.some(c => c.id === cat)) data.categories.push({ id: cat, label });
+  }
+  const name = v("f-name");
+  if (!name) return { error: "Add a name first." };
+  return { cat, name, url: v("f-url"), code: v("f-code"), what: v("f-what"), perk: v("f-perk"), headline: v("f-headline"),
+           bg: v("f-bg"), fg: v("f-fg"), accent: v("f-accent"), example: $("#f-example").checked };
+}
+
+function pruneCategories(){ data.categories = data.categories.filter(c => data.links.some(l => l.cat === c.id)); }
+
+$("#drawer").addEventListener("click", async e => {
+  const t = e.target.closest("button"); if (!t) return;
+  const id = t.id, act = t.dataset.act, i = +t.dataset.i;
+  if (id === "close") { $("#drawer").hidden = true; $("#login").focus(); return; }
+  if (id === "add") { editingId = "__new"; $("#drawer")._new = blankLink(); renderDrawer(); $("#f-name").focus(); return; }
+  if (id === "cancel") { editingId = null; renderDrawer(); return; }
+  if (act === "edit") { editingId = data.links[i].id; renderDrawer(); $("#form").scrollIntoView({block:"start"}); return; }
+  if (act === "up" || act === "down") {
+    const j = act === "up" ? i - 1 : i + 1; const L = data.links; [L[i], L[j]] = [L[j], L[i]]; markDirty(); return;
+  }
+  if (act === "del") {
+    if (!t.classList.contains("armed")) { t.classList.add("armed"); t.textContent = "Sure?"; setTimeout(() => { if (t.isConnected) { t.classList.remove("armed"); t.textContent = "Delete"; } }, 3000); return; }
+    const gone = data.links.splice(i, 1)[0]; if (editingId === gone.id) editingId = null; pruneCategories(); markDirty(); return;
+  }
+  if (id === "apply") {
+    const f = readForm(); if (f.error) { $("#msg").textContent = f.error; $("#msg").className = "msg err"; return; }
+    if (editingId === "__new") {
+      let nid = slug(f.name), n = 2; while (data.links.some(l => l.id === nid)) nid = slug(f.name) + "-" + n++;
+      data.links.push({ id: nid, ...f });
+    } else {
+      const l = data.links.find(x => x.id === editingId); Object.assign(l, f);
+    }
+    editingId = null; pruneCategories(); markDirty(); return;
+  }
+  if (id === "ask-go") return ask();
+  if (id === "autofill") return autofill(t);
+  if (id === "save") return save(t);
+});
+
+$("#drawer").addEventListener("input", e => { if (e.target.id === "ask-text") askText = e.target.value; });
+
+async function ask(){
+  askText = ($("#ask-text").value || "").trim();
+  if (!askText) { askSaid = "Type what you want changed first."; renderDrawer(); return; }
+  askBusy = true; askSaid = ""; renderDrawer();
+  const current = { categories: data.categories, links: data.links.map(({id, ...rest}) => ({id, ...rest})) };
+  const prompt = `You manage the data for Clay's personal page of referral and affiliate links ("Mitch Links"). Friends visit it to copy his codes.
+Here is the current data as JSON:
+${JSON.stringify(current)}
+
+Clay's request:
+"""${askText}"""
+
+Apply the request and return ONLY a JSON object: {"categories": [...], "links": [...], "summary": "..."}.
+Rules:
+- Keep every link and category the request doesn't touch exactly as it is, in the same order.
+- Each link has: id (short lowercase slug, unique), cat (a category id), name, url (full https URL), what (one short casual first-person sentence), perk (short, or ""), code (the referral code, or "" if none), example (false for anything Clay adds or edits), headline (short tagline in the style of the product's homepage, max 40 chars), bg, fg, accent (#RRGGBB colors approximating the product's website header background, header text, and brand/button color).
+- Each category has: id (short lowercase slug) and label. Only keep categories that still have links. Add a category if a new link needs one.
+- Don't invent referral codes or URLs Clay didn't give. The url must be Clay's own referral link (with his code built in) when he gives one. If he gives only a code, keep the current url and say in the summary that he should paste his referral link from the app's invite screen so the link carries his code.
+- "summary": one or two plain sentences telling Clay what you changed, or what you need from him if the request is unclear (then leave the data unchanged).`;
+  try {
+    const r = await sampleApi.json(prompt, { modelTier: "default" });
+    const okLink = l => l && typeof l === "object" && typeof l.name === "string" && l.name && typeof l.cat === "string";
+    if (!r || !Array.isArray(r.links) || !Array.isArray(r.categories) || !r.links.every(okLink)) throw { code: "bad_shape" };
+    const seen = new Set();
+    const links = r.links.map(l => {
+      let id = slug(l.id || l.name); while (seen.has(id)) id += "-2"; seen.add(id);
+      return { id, cat: slug(l.cat), name: String(l.name), url: String(l.url || ""), what: String(l.what || ""), perk: String(l.perk || ""),
+        code: String(l.code || ""), example: !!l.example, headline: String(l.headline || ""),
+        bg: hex(l.bg) || "#FFFFFF", fg: hex(l.fg) || "#111111", accent: hex(l.accent) || "#2340D9" };
+    });
+    const cats = r.categories.filter(c => c && c.label).map(c => ({ id: slug(c.id || c.label), label: String(c.label) }));
+    links.forEach(l => { if (!cats.some(c => c.id === l.cat)) cats.push({ id: l.cat, label: l.cat.replace(/-/g, " ").replace(/\b\w/g, m => m.toUpperCase()) }); });
+    const changed = JSON.stringify({ c: cats, l: links }) !== JSON.stringify({ c: data.categories, l: data.links });
+    if (changed) { data.categories = cats; data.links = links; pruneCategories(); dirty = true; editingId = null; askText = ""; }
+    askSaid = (r.summary ? String(r.summary) : (changed ? "Done." : "Nothing changed.")) + (changed ? " Check the page behind this panel, then tap Save and publish." : "");
+  } catch (err) {
+    const code = err && err.code;
+    askSaid = code === "not_granted" ? "Claude wasn't allowed to run here. You can still edit the links by hand below."
+      : code === "rate_limited" ? "Too many requests. Wait a minute and try again."
+      : "Claude couldn't make that change. Try saying it a different way, or edit the link by hand below.";
+  }
+  askBusy = false; render(); renderDrawer();
+}
+
+async function autofill(btn){
+  const name = ($("#f-name").value || "").trim(), url = ($("#f-url").value || "").trim();
+  if (!name && !url) { $("#msg").textContent = "Type a name or paste a link first."; $("#msg").className = "msg err"; return; }
+  btn.disabled = true; btn.textContent = "Claude is thinking…";
+  const cats = data.categories.map(c => c.label).join(", ");
+  const prompt = `You are filling in a card on Clay's personal page of referral and affiliate links, which friends visit to see what he uses.
+Product name: ${name || "(not given)"}
+Referral link: ${url || "(not given)"}
+Existing categories: ${cats || "(none)"}
+
+Return ONLY a JSON object with these keys:
+- "name": the product's proper name
+- "category": one of the existing categories if it fits, otherwise a new short category label (2-3 words)
+- "what": one short, casual first-person sentence about what Clay uses it for (max 60 characters)
+- "perk": the typical new-user referral perk in a few words, or "" if unsure
+- "headline": a short tagline in the style of the product's homepage hero (max 40 characters)
+- "bg", "fg", "accent": hex colors (#RRGGBB) approximating the product's website header background, header text color, and main brand/button color.`;
+  try {
+    const r = await sampleApi.json(prompt, { modelTier: "quick" });
+    const set = (id, val) => { if (val && $("#" + id)) $("#" + id).value = val; };
+    set("f-name", r.name); set("f-what", r.what); set("f-perk", r.perk); set("f-headline", r.headline);
+    set("f-bg", hex(r.bg)); set("f-fg", hex(r.fg)); set("f-accent", hex(r.accent));
+    if (r.category) {
+      const match = data.categories.find(c => c.label.toLowerCase() === String(r.category).toLowerCase());
+      if (match) { $("#f-cat").value = match.id; $("#newcat-wrap").hidden = true; }
+      else { $("#f-cat").value = "__new"; $("#newcat-wrap").hidden = false; $("#f-newcat").value = r.category; }
+    }
+    $("#msg").textContent = "Filled in. Check it over, then tap " + (editingId === "__new" ? "Add link." : "Update link."); $("#msg").className = "msg ok";
+  } catch (err) {
+    const code = err && err.code;
+    $("#msg").textContent = code === "not_granted" ? "Claude autofill wasn't allowed. You can fill the fields in yourself."
+      : code === "rate_limited" ? "Too many requests. Wait a minute and try again."
+      : "Autofill didn't work this time. You can fill the fields in yourself.";
+    $("#msg").className = "msg err";
+  }
+  btn.disabled = false; btn.textContent = "Autofill with Claude";
+}
+
+async function save(btn){
+  btn.disabled = true; btn.textContent = "Saving…";
+  const d = new Date();
+  data.updated = d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  dirty = false;
+  try {
+    await artifactApi.publish(buildDoc(data));
+    $("#msg").textContent = "Saved. The page is reloading with your changes."; $("#msg").className = "msg ok";
+  } catch (err) {
+    const code = err && err.code;
+    const m = code === "conflict" ? "A newer version was saved somewhere else, so the page is reloading to it. Make your change again after it loads."
+      : (code === "not_writer" || code === "not_granted" || code === "consent_required") ? "This view can't save. Open the page while signed in to your own Claude account."
+      : code === "rate_limited" ? "Saving too often. Wait a minute, then save again."
+      : code === "too_large" ? "The page got too big to save. Remove a few links and try again."
+      : "Saving didn't go through. Try again in a moment.";
+    $("#msg").textContent = m; $("#msg").className = "msg err";
+    if (code !== "conflict") dirty = true;
+    btn.disabled = false; btn.textContent = "Save and publish";
+  }
+}
+
+let adminCheck = null;
+if (!window.claude) $("#login").hidden = true;   // on the public website (outside Claude) there is no editor
+$("#login").addEventListener("click", async () => {
+  const note = $("#note");
+  note.hidden = false; note.textContent = "Checking your account…";
+  const ok = await (adminCheck || Promise.resolve(false));
+  if (ok) { note.hidden = true; $("#drawer").hidden = false; renderDrawer(); return; }
+  note.textContent = "Only Clay can edit this page. Open it in the Claude app or on claude.ai while signed in to Clay's account.";
+  setTimeout(() => { note.hidden = true; }, 6000);
+});
+window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+adminCheck = (async () => {
+  if (!window.claude || !claude.use) return false;
+  const user = await claude.use("user");
+  const canEdit = user ? await user.canEdit() : false;
+  if (!canEdit) return false;
+  artifactApi = await claude.use("artifact");
+  if (!artifactApi) return false;
+  sampleApi = await claude.use("sample");
+  return true;
+})().catch(() => false);
+})();
+</script>
+</body></html>
