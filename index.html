@@ -29,6 +29,8 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(52px,12vw,112px);l
 h1 span{background:var(--blue);color:#fff;padding:0 .12em;display:inline-block;margin-top:.08em;box-shadow:6px 6px 0 var(--shadow)}
 .lede{max-width:56ch;margin:0;font-size:18px}
 .fine{font-size:13px;color:var(--muted);margin:0;max-width:70ch}
+.pitch{margin:0;max-width:60ch;font-size:16px;border:3px solid var(--edge);background:var(--yellow);color:#111;padding:12px 14px;box-shadow:4px 4px 0 var(--shadow)}
+.pitch b{font-family:var(--display);font-weight:400;text-transform:uppercase;display:block;font-size:18px;margin-bottom:2px}
 .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
 .chip{font:700 14px/1 var(--body);padding:10px 14px;border:3px solid var(--edge);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--shadow);transition:transform .1s,box-shadow .1s}
 .chip[aria-pressed="true"]{background:var(--yellow);color:#111;border-color:#111}
@@ -157,8 +159,9 @@ $("#app").innerHTML = `
   <div class="topbar"><button class="login" id="login">Admin login</button><p class="note" id="note" hidden role="status"></p></div>
   <header>
     <h1>Mitch<br><span>Links</span></h1>
-    <p class="lede">You keep asking what I bank with, trade on, train with and build on. Here's all of it. Copy my code, tap the link, and we both usually get a bonus.</p>
-    <p class="fine">Heads up: these are referral or affiliate links, so I may earn a reward if you sign up. I only list things I actually use.</p>
+    <p class="lede">These are the apps and sites I actually use, all the time. No ads, no randoms, just my real list.</p>
+    <p class="pitch"><b>You get a bonus. I get a bonus.</b> Most of these companies pay both people when you sign up with a friend's referral link. If you were going to sign up anyway, use mine. It's free money for both of us.</p>
+    <p class="fine">These are referral links, so I may get a bonus when you sign up. Each company sets its own bonus and terms.</p>
   </header>
   <nav class="filters" id="filters" aria-label="Filter by category"></nav>
   <main id="main" class="wrap" style="gap:36px;width:100%"></main>
