@@ -68,18 +68,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 /* ---- ragdoll cat ---- */
 .kitty{position:fixed;bottom:0;z-index:60;width:170px;pointer-events:none;animation:catMove 4.6s cubic-bezier(.45,.05,.3,1) forwards;padding-bottom:env(safe-area-inset-bottom,0px)}
 .kitty svg{display:block;width:170px;height:auto;overflow:visible}
-.kitty .head{transform-origin:80px 100px;transform-box:view-box;animation:catHead 4.6s ease-in-out forwards}
-.kitty .paw{transform-origin:92px 124px;transform-box:view-box;animation:catPaw 4.6s ease-in-out forwards}
+.kitty .head{transform-origin:80px 104px;transform-box:view-box;animation:catHead 4.6s ease-in-out forwards}
+.kitty .paw{transform-origin:91px 124px;transform-box:view-box;animation:catPaw 4.6s ease-in-out forwards}
 .kitty .tongue{opacity:0;animation:catTongue 4.6s linear forwards}
-.kitty .eyes{transform-origin:80px 68px;transform-box:view-box;animation:catEyes 4.6s ease-in-out forwards}
-.kitty .tail{transform-origin:108px 150px;transform-box:view-box;animation:catTail .7s ease-in-out infinite alternate}
+.kitty .eyes{transform-origin:80px 72px;transform-box:view-box;animation:catEyes 4.6s ease-in-out forwards}
+.kitty .tail{transform-origin:108px 156px;transform-box:view-box;animation:catTail .7s ease-in-out infinite alternate}
 .kitty .walk{animation:catBob .22s ease-in-out 4 alternate}
 .kitty .bubble{position:absolute;left:50%;bottom:100%;margin-bottom:-6px;transform:translateX(-30%) scale(.6);opacity:0;white-space:nowrap;font:400 17px/1 var(--display);text-transform:uppercase;background:#fff;color:#111;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:10px 12px;animation:catBubble 4.6s ease-out forwards}
 .kitty .bubble::after{content:"";position:absolute;left:24px;top:100%;border:9px solid transparent;border-top-color:#111}
 @keyframes catMove{0%{transform:translateX(-120vw)}16%{transform:translateX(0)}84%{transform:translateX(0)}100%{transform:translateX(120vw)}}
 @keyframes catBob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
 @keyframes catHead{0%,18%{transform:rotate(0)}23%,46%{transform:rotate(9deg)}53%{transform:rotate(-5deg)}60%,100%{transform:rotate(0)}}
-@keyframes catPaw{0%,18%{transform:rotate(0)}24%{transform:rotate(160deg)}28%{transform:rotate(143deg)}32%{transform:rotate(160deg)}36%{transform:rotate(143deg)}40%{transform:rotate(160deg)}48%,100%{transform:rotate(0)}}
+@keyframes catPaw{0%,18%{transform:rotate(0)}24%{transform:translateY(10px) rotate(165deg)}28%{transform:translateY(10px) rotate(150deg)}32%{transform:translateY(10px) rotate(165deg)}36%{transform:translateY(10px) rotate(150deg)}40%{transform:translateY(10px) rotate(165deg)}48%,100%{transform:rotate(0)}}
 @keyframes catTongue{0%,23%{opacity:0}25%{opacity:1}27%,31%{opacity:0}33%{opacity:1}35%,39%{opacity:0}41%{opacity:1}43%,100%{opacity:0}}
 @keyframes catEyes{0%,19%{transform:scaleY(1)}22%,46%{transform:scaleY(.2)}51%{transform:scaleY(1.12)}68%{transform:scaleY(1)}70%{transform:scaleY(.1)}72%,100%{transform:scaleY(1)}}
 @keyframes catTail{from{transform:rotate(-6deg)}to{transform:rotate(8deg)}}
@@ -276,31 +276,42 @@ function confetti(el){
 }
 
 /* ---------- ragdoll cat says thanks ---------- */
-const CAT_SVG = `<svg viewBox="0 0 160 172" aria-hidden="true">
-  <defs><radialGradient id="catMask" cx="50%" cy="48%" r="55%"><stop offset="0" stop-color="#5A3D2E"/><stop offset=".55" stop-color="#7A5A48" stop-opacity=".85"/><stop offset="1" stop-color="#C9A98E" stop-opacity="0"/></radialGradient></defs>
-  <g class="walk">
-    <path class="tail" d="M106 150 C150 152 162 112 144 90 C134 78 122 88 131 99 C142 113 132 136 102 140 Z" fill="#6E4E3E"/>
-    <ellipse cx="80" cy="128" rx="44" ry="38" fill="#F2E6D6"/>
-    <ellipse cx="80" cy="120" rx="26" ry="28" fill="#FFFFFF"/>
-    <ellipse cx="54" cy="162" rx="15" ry="8" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
-    <ellipse cx="106" cy="162" rx="15" ry="8" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
-    <ellipse cx="68" cy="152" rx="9" ry="14" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+const CAT_SVG = `<svg viewBox="0 0 160 180" aria-hidden="true">
+  <defs>
+    <radialGradient id="catMask" cx="50%" cy="58%" r="60%"><stop offset="0" stop-color="#4E3428"/><stop offset=".6" stop-color="#6B4A3A"/><stop offset="1" stop-color="#8A6A56" stop-opacity="0"/></radialGradient>
+    <linearGradient id="catLeg" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#F4E8DA"/><stop offset=".6" stop-color="#8C6A56"/><stop offset="1" stop-color="#4A3226"/></linearGradient>
+  </defs>
+  <g class="walk" stroke="#1A1310" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+    <path class="tail" d="M108 162 C138 166 158 152 156 132 C155 120 146 112 136 116 C132 118 131 123 134 126 C142 130 143 144 132 150 C124 154 114 154 106 152 Z" fill="#5A3C2E"/>
+    <ellipse cx="46" cy="166" rx="13" ry="9" fill="#4A3226"/>
+    <ellipse cx="114" cy="166" rx="13" ry="9" fill="#4A3226"/>
+    <path d="M50 112 C40 132 42 160 54 170 L106 170 C118 160 120 132 110 112 Z" fill="#F4E8DA"/>
+    <path d="M58 104 L62 118 L67 110 L71 124 L76 113 L80 127 L84 113 L89 124 L93 110 L98 118 L102 104 C94 110 66 110 58 104 Z" fill="#FFFBF4"/>
+    <path d="M62 122 C59 138 59 156 60 170 L77 170 C78 156 78 138 77 122 Z" fill="url(#catLeg)"/>
+    <path d="M62 150 Q69 147 77 150 M61 158 Q69 155 77 158" fill="none" stroke="#3A271E" stroke-width="1.6"/>
+    <ellipse cx="68.5" cy="170" rx="10.5" ry="6" fill="#4A3226"/>
+    <path d="M65 168 L65 173 M72 168 L72 173" stroke-width="1.4"/>
     <g class="head">
-      <path d="M44 60 L50 20 L74 44 Z" fill="#5A3D2E"/><path d="M51 52 L54 30 L67 45 Z" fill="#E8A9A0"/>
-      <path d="M116 60 L110 20 L86 44 Z" fill="#5A3D2E"/><path d="M109 52 L106 30 L93 45 Z" fill="#E8A9A0"/>
-      <ellipse cx="80" cy="70" rx="40" ry="34" fill="#F2E6D6"/>
-      <ellipse cx="80" cy="73" rx="27" ry="24" fill="url(#catMask)"/>
-      <ellipse cx="80" cy="95" rx="30" ry="11" fill="#FFFFFF"/>
+      <path d="M46 56 L50 16 L78 40 Z" fill="#5A3C2E"/><path d="M52 48 L54 26 L70 41 Z" fill="#D9A0A0" stroke="none"/>
+      <path d="M114 56 L110 16 L82 40 Z" fill="#5A3C2E"/><path d="M108 48 L106 26 L90 41 Z" fill="#D9A0A0" stroke="none"/>
+      <path d="M34 70 C34 42 54 28 80 28 C106 28 126 42 126 70 C126 80 122 86 130 93 L118 95 L123 104 L106 101 C96 110 64 110 54 101 L37 104 L42 95 L30 93 C38 86 34 80 34 70 Z" fill="#F4E8DA"/>
+      <path d="M50 84 C50 64 62 56 80 56 C98 56 110 64 110 84 C110 98 96 104 80 104 C64 104 50 98 50 84 Z" fill="url(#catMask)" stroke="none"/>
+      <path d="M74 32 L76 46 M80 30 L80 46 M86 32 L84 46" stroke="#6B4A3A" stroke-width="3"/>
       <g class="eyes">
-        <ellipse cx="67" cy="68" rx="7.5" ry="8.5" fill="#5B9BEA"/><ellipse cx="67" cy="69" rx="2.6" ry="6" fill="#111"/><circle cx="69.5" cy="65" r="2" fill="#fff"/>
-        <ellipse cx="93" cy="68" rx="7.5" ry="8.5" fill="#5B9BEA"/><ellipse cx="93" cy="69" rx="2.6" ry="6" fill="#111"/><circle cx="95.5" cy="65" r="2" fill="#fff"/>
+        <circle cx="64" cy="72" r="13" fill="#3E8EDC"/><circle cx="64" cy="73" r="9" fill="#0E0B0A" stroke="none"/><circle cx="60" cy="67.5" r="4.2" fill="#fff" stroke="none"/><circle cx="67.5" cy="77" r="1.6" fill="#fff" stroke="none"/>
+        <circle cx="96" cy="72" r="13" fill="#3E8EDC"/><circle cx="96" cy="73" r="9" fill="#0E0B0A" stroke="none"/><circle cx="92" cy="67.5" r="4.2" fill="#fff" stroke="none"/><circle cx="99.5" cy="77" r="1.6" fill="#fff" stroke="none"/>
       </g>
-      <path d="M75.5 80 L84.5 80 L80 85.5 Z" fill="#D98C8C"/>
-      <path d="M80 85.5 Q76.5 90 72 88.5 M80 85.5 Q83.5 90 88 88.5" stroke="#3A2A22" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <ellipse class="tongue" cx="80" cy="91" rx="3.6" ry="4.2" fill="#F08A9A"/>
-      <path d="M60 86 L32 81 M60 90 L33 92 M100 86 L128 81 M100 90 L127 92" stroke="#BFAE9C" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M76 86 Q80 84 84 86 Q82 90 80 90.5 Q78 90 76 86 Z" fill="#E59A9A" stroke-width="1.6"/>
+      <path d="M80 90.5 Q77 95 73 93 M80 90.5 Q83 95 87 93" fill="none" stroke-width="1.8"/>
+      <ellipse class="tongue" cx="80" cy="96" rx="3.4" ry="4" fill="#F08A9A" stroke-width="1.4"/>
+      <path d="M58 88 L30 84 M58 92 L31 95 M102 88 L130 84 M102 92 L129 95" stroke="#FFFFFF" stroke-width="1.3"/>
     </g>
-    <ellipse class="paw" cx="92" cy="152" rx="9" ry="14" fill="#FFFFFF" stroke="#E4D6C4" stroke-width="1.5"/>
+    <g class="paw">
+      <path d="M83 122 C82 138 82 156 83 170 L100 170 C101 156 101 138 98 122 Z" fill="url(#catLeg)"/>
+      <path d="M83 150 Q91 147 99 150 M83 158 Q91 155 99 158" fill="none" stroke="#3A271E" stroke-width="1.6"/>
+      <ellipse cx="91.5" cy="170" rx="10.5" ry="6" fill="#4A3226"/>
+      <path d="M88 168 L88 173 M95 168 L95 173" stroke-width="1.4"/>
+    </g>
   </g>
 </svg>`;
 function catThanks(el){
