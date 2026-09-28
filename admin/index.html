@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Mitch Links Admin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Rubik:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#FFFFFF;--paper:#FFFFFF;--ink:#111;--muted:#4A4A4A;--edge:#111;--shadow:#111;--blue:#2340D9;--yellow:#FFD23F;--chip:#F2F2F2;--danger:#D7263D;--ok:#1C7C43;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;--body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#15151A;--paper:#1F1F26;--ink:#F4F4F6;--muted:#B8B8C2;--edge:#F4F4F6;--shadow:#FFD23F;--blue:#6E86FF;--chip:#2A2A33;--danger:#FF6B7D;--ok:#5BE0A4}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#15151A;--paper:#1F1F26;--ink:#F4F4F6;--muted:#B8B8C2;--edge:#F4F4F6;--shadow:#FFD23F;--blue:#6E86FF;--chip:#2A2A33;--danger:#FF6B7D;--ok:#5BE0A4}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding:16px 16px 64px}
+.wrap{max-width:720px;margin:0 auto;display:grid;gap:22px}
+h1{font:400 clamp(36px,9vw,56px)/.95 var(--display);text-transform:uppercase;margin:0}
+h1 span{background:var(--blue);color:#fff;padding:0 .12em;display:inline-block;box-shadow:5px 5px 0 var(--shadow)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.top a{color:var(--ink);font-weight:700}
+.box{border:3px solid var(--edge);background:var(--paper);box-shadow:5px 5px 0 var(--shadow);padding:16px;display:grid;gap:12px}
+.box h2{font:400 20px/1.1 var(--display);text-transform:uppercase;margin:0}
+.box p{margin:0}
+.box ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.ask{background:var(--yellow);color:#111;border-color:#111;box-shadow:5px 5px 0 #111}
+.ask textarea{font:400 16px/1.4 var(--body);padding:10px;border:2px solid #111;background:#fff;color:#111;border-radius:0;width:100%;min-height:90px;resize:vertical}
+.ask .btn{background:#111;color:#fff;border-color:#111}
+.said{background:#fff;border:2px solid #111;padding:8px 10px;font-size:15px}
+.fld{display:grid;gap:4px;font-size:14px;font-weight:700}
+.fld small{font-weight:400;color:var(--muted)}
+.fld input,.fld select{font:400 16px/1.3 var(--body);padding:10px;border:2px solid var(--edge);background:var(--paper);color:var(--ink);border-radius:0;width:100%}
+.fld input[type=color]{padding:2px;height:42px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.chk{display:flex;gap:8px;align-items:center;font-size:15px}
+.btn{font:700 15px/1 var(--body);padding:12px 16px;border:3px solid var(--edge);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--shadow);text-decoration:none;display:inline-block;text-align:center}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.sm{padding:7px 10px;font-size:13px;box-shadow:2px 2px 0 var(--shadow)}
+.btn.danger{color:var(--danger)}
+.btn.danger.armed{background:var(--danger);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:active:not(:disabled){transform:translate(3px,3px);box-shadow:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.rows{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:10px;border:2px solid var(--edge);padding:10px;background:var(--paper)}
+.sw{width:20px;height:20px;border:2px solid #111;flex:none}
+.nm{flex:1;min-width:0;font-weight:700;overflow-wrap:anywhere}
+.nm small{display:block;font-weight:400;color:var(--muted)}
+.nm .warn{color:var(--danger);font-weight:700}
+.acts{display:flex;gap:4px;flex:none;flex-wrap:wrap;justify-content:flex-end}
+.bar{position:sticky;bottom:0;background:var(--bg);border-top:3px solid var(--edge);padding:12px 0;display:grid;gap:8px}
+.msg{margin:0;min-height:1.3em;font-size:14px}
+.msg.err{color:var(--danger)}
+.msg.ok{color:var(--ok);font-weight:700}
+.fine{font-size:13px;color:var(--muted)}
+@media (max-width:560px){.two,.three{grid-template-columns:1fr}.row{flex-wrap:wrap}.acts{width:100%;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>Mitch<br><span>Admin</span></h1><a href="/">View site</a></div>
+
+  <!-- one-time setup on each device -->
+  <section class="box" id="setup" hidden>
+    <h2>Log in</h2>
+    <p>Only someone with your GitHub key can change the site. You set this up once on each phone or computer, and it stays saved there.</p>
+    <label class="fld">GitHub key
+      <small>On GitHub: Settings, Developer settings, Personal access tokens, Fine-grained tokens, Generate new token. Repository access: only mitch-links. Permissions: Contents, Read and write.</small>
+      <input id="gh" type="password" autocomplete="off" placeholder="github_pat_...">
+    </label>
+    <label class="fld">Claude API key <small>Optional. Powers the "Tell Claude" box. Get one at console.anthropic.com, API keys.</small>
+      <input id="ak" type="password" autocomplete="off" placeholder="sk-ant-...">
+    </label>
+    <button class="btn primary" id="login">Log in</button>
+    <p class="msg" id="setup-msg" role="status"></p>
+  </section>
+
+  <div id="editor" hidden style="display:grid;gap:22px">
+    <section class="box ask" id="ask-box">
+      <h2>Tell Claude what to change</h2>
+      <textarea id="ask-text" placeholder="Add my Kraken link kraken.com/invite/abc with code MITCH, and delete Website Host"></textarea>
+      <button class="btn" id="ask-go">Make the change</button>
+      <p class="said" id="said" hidden></p>
+    </section>
+
+    <section class="box" id="form-box" hidden></section>
+
+    <section class="box">
+      <h2 id="count">Your links</h2>
+      <div class="rows" id="rows"></div>
+      <button class="btn" id="add">+ Add a link</button>
+    </section>
+
+    <div class="bar">
+      <p class="msg" id="msg" role="status"></p>
+      <button class="btn primary" id="save" disabled>Save and publish</button>
+      <p class="fine" id="dirty">Everything is saved.</p>
+    </div>
+    <p class="fine"><a href="#" id="logout" style="color:inherit">Log out on this device</a> · <a href="#" id="keys" style="color:inherit">Change keys</a></p>
+  </div>
+</div>
+
+<script>
+(function(){
+const REPO = "biglunks/mitch-links", FILE = "index.html", BRANCH = "main";
+const MODEL = "claude-sonnet-5-5";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hex = v => /^#[0-9a-f]{6}$/i.test(v||"") ? v : null;
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40) || "item";
+const store = {
+  get(k){ try { return localStorage.getItem(k) || ""; } catch(e) { return ""; } },
+  set(k,v){ try { v ? localStorage.setItem(k,v) : localStorage.removeItem(k); } catch(e) {} }
+};
+const BLOCK = /(<script type="application\/json" id="links-data">)([\s\S]*?)(<\/script>)/;
+
+let gh = store.get("ml-gh"), ak = store.get("ml-ak");
+let data = null, sha = null, html = null, editing = null, dirty = false, busy = false;
+
+/* ---------- GitHub ---------- */
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,"")), c => c.charCodeAt(0)));
+const b64enc = s => { const b = new TextEncoder().encode(s); let out = ""; for (let i = 0; i < b.length; i += 0x8000) out += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(out); };
+async function api(path, opts = {}){
+  const r = await fetch("https://api.github.com/repos/" + REPO + path, { ...opts, cache: "no-store",
+    headers: { "Authorization": "Bearer " + gh, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(opts.body ? {"Content-Type":"application/json"} : {}) } });
+  if (!r.ok) { const e = new Error("github " + r.status); e.status = r.status; throw e; }
+  return r.json();
+}
+async function load(){
+  const f = await api("/contents/" + FILE + "?ref=" + BRANCH);
+  html = b64dec(f.content); sha = f.sha;
+  const m = html.match(BLOCK); if (!m) throw new Error("no links-data block");
+  data = JSON.parse(m[2]);
+}
+
+/* ---------- screens ---------- */
+function showSetup(msg, kind){
+  $("#editor").hidden = true; $("#setup").hidden = false;
+  $("#gh").value = gh; $("#ak").value = ak;
+  $("#setup-msg").textContent = msg || ""; $("#setup-msg").className = "msg " + (kind || "");
+}
+async function start(){
+  if (!gh) return showSetup();
+  $("#setup").hidden = true;
+  try { await load(); }
+  catch (e) {
+    return showSetup(e.status === 401 || e.status === 403 || e.status === 404
+      ? "That GitHub key didn't work. Check it has access to mitch-links with Contents: Read and write."
+      : "Couldn't load your links. Check your connection and try again.", "err");
+  }
+  $("#editor").hidden = false; $("#ask-box").hidden = !ak;
+  render();
+}
+$("#login").addEventListener("click", () => {
+  gh = $("#gh").value.trim(); ak = $("#ak").value.trim();
+  if (!gh) { $("#setup-msg").textContent = "Paste your GitHub key first."; $("#setup-msg").className = "msg err"; return; }
+  store.set("ml-gh", gh); store.set("ml-ak", ak);
+  $("#setup-msg").textContent = "Checking…"; $("#setup-msg").className = "msg";
+  start();
+});
+$("#logout").addEventListener("click", e => { e.preventDefault(); if (dirty && !confirm("You have unsaved changes. Log out anyway?")) return; gh = ak = ""; store.set("ml-gh",""); store.set("ml-ak",""); dirty = false; showSetup("Logged out on this device."); });
+$("#keys").addEventListener("click", e => { e.preventDefault(); showSetup(); });
+
+/* ---------- editor ---------- */
+function setMsg(t, kind){ $("#msg").textContent = t || ""; $("#msg").className = "msg " + (kind || ""); }
+function markDirty(){ dirty = true; render(); setMsg(""); }
+function blank(){ return { id:"", cat:(data.categories[0]||{}).id || "", name:"", url:"", what:"", perk:"", code:"", example:false, bg:"#FFFFFF", fg:"#111111", accent:"#2340D9", headline:"" }; }
+function prune(){ data.categories = data.categories.filter(c => data.links.some(l => l.cat === c.id)); }
+
+function render(){
+  const L = data.links;
+  $("#count").textContent = "Your links (" + L.length + ")";
+  $("#rows").innerHTML = L.map((x, i) => `<div class="row">
+    <span class="sw" style="background:${hex(x.bg) || "#fff"}"></span>
+    <span class="nm">${esc(x.name || "Untitled")}${x.example ? " (example)" : ""}
+      <small>${esc((data.categories.find(c => c.id === x.cat) || {}).label || "No category")}</small>
+      ${x.code && !String(x.url||"").toLowerCase().includes(String(x.code).toLowerCase()) ? '<small class="warn">Link doesn\'t have your code in it yet</small>' : ""}</span>
+    <span class="acts">
+      <button class="btn sm" data-act="up" data-i="${i}" aria-label="Move up"${i === 0 ? " disabled" : ""}>↑</button>
+      <button class="btn sm" data-act="down" data-i="${i}" aria-label="Move down"${i === L.length - 1 ? " disabled" : ""}>↓</button>
+      <button class="btn sm" data-act="edit" data-i="${i}">Edit</button>
+      <button class="btn sm danger" data-act="del" data-i="${i}">Delete</button>
+    </span></div>`).join("") || '<p class="fine">No links yet.</p>';
+  $("#save").disabled = !dirty || busy;
+  $("#dirty").textContent = dirty ? "You have unsaved changes. Friends see them after you save." : "Everything is saved.";
+  renderForm();
+}
+
+function renderForm(){
+  const box = $("#form-box");
+  if (!editing) { box.hidden = true; box.innerHTML = ""; $("#add").hidden = false; return; }
+  const l = editing.link;
+  $("#add").hidden = true; box.hidden = false;
+  const catOpts = data.categories.map(c => `<option value="${esc(c.id)}"${l.cat === c.id ? " selected" : ""}>${esc(c.label)}</option>`).join("") + `<option value="__new">+ New category…</option>`;
+  box.innerHTML = `<h2>${editing.isNew ? "New link" : "Editing " + esc(l.name)}</h2>
+    <label class="fld">Name<input id="f-name" value="${esc(l.name)}" placeholder="Kraken"></label>
+    <label class="fld">Your referral link <small>Copy it from the app's "Invite friends" screen so your code is built in</small><input id="f-url" value="${esc(l.url)}" placeholder="https://..."></label>
+    <label class="fld">Referral code <small>Leave blank if the link already does it</small><input id="f-code" value="${esc(l.code)}"></label>
+    <div class="two">
+      <label class="fld">Category<select id="f-cat">${catOpts}</select></label>
+      <label class="fld" id="newcat-wrap" hidden>New category name<input id="f-newcat" placeholder="Fitness"></label>
+    </div>
+    <label class="fld">What it is<input id="f-what" value="${esc(l.what)}" placeholder="Where I buy and hold crypto."></label>
+    <label class="fld">Perk for your friend<input id="f-perk" value="${esc(l.perk)}" placeholder="$25 when you sign up"></label>
+    <label class="fld">Preview headline<input id="f-headline" value="${esc(l.headline)}"></label>
+    <div class="three">
+      <label class="fld">Preview background<input type="color" id="f-bg" value="${hex(l.bg) || "#ffffff"}"></label>
+      <label class="fld">Preview text<input type="color" id="f-fg" value="${hex(l.fg) || "#111111"}"></label>
+      <label class="fld">Brand color<input type="color" id="f-accent" value="${hex(l.accent) || "#2340d9"}"></label>
+    </div>
+    <label class="chk"><input type="checkbox" id="f-example"${l.example ? " checked" : ""}> Show the EXAMPLE tag</label>
+    <div class="two"><button class="btn primary" id="apply">${editing.isNew ? "Add link" : "Update link"}</button><button class="btn" id="cancel">Cancel</button></div>`;
+  $("#f-cat").addEventListener("change", e => { $("#newcat-wrap").hidden = e.target.value !== "__new"; });
+}
+
+function readForm(){
+  const v = id => ($("#" + id)?.value || "").trim();
+  let cat = v("f-cat");
+  if (cat === "__new") {
+    const label = v("f-newcat"); if (!label) return { error: "Give the new category a name." };
+    cat = slug(label); if (!data.categories.some(c => c.id === cat)) data.categories.push({ id: cat, label });
+  }
+  if (!v("f-name")) return { error: "Add a name first." };
+  return { cat, name: v("f-name"), url: v("f-url"), code: v("f-code"), what: v("f-what"), perk: v("f-perk"), headline: v("f-headline"),
+    bg: v("f-bg"), fg: v("f-fg"), accent: v("f-accent"), example: $("#f-example").checked };
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t || !data) return;
+  const act = t.dataset.act, i = +t.dataset.i, L = data.links;
+  if (t.id === "add") { editing = { isNew: true, link: blank() }; render(); $("#form-box").scrollIntoView({block:"start"}); return; }
+  if (t.id === "cancel") { editing = null; render(); return; }
+  if (t.id === "apply") {
+    const f = readForm(); if (f.error) return setMsg(f.error, "err");
+    if (editing.isNew) { let id = slug(f.name), n = 2; while (L.some(l => l.id === id)) id = slug(f.name) + "-" + n++; L.push({ id, ...f }); }
+    else Object.assign(editing.link, f);
+    editing = null; prune(); markDirty(); return;
+  }
+  if (act === "edit") { editing = { isNew: false, link: L[i] }; render(); $("#form-box").scrollIntoView({block:"start"}); return; }
+  if (act === "up" || act === "down") { const j = act === "up" ? i - 1 : i + 1; [L[i], L[j]] = [L[j], L[i]]; markDirty(); return; }
+  if (act === "del") {
+    if (!t.classList.contains("armed")) { t.classList.add("armed"); t.textContent = "Sure?"; setTimeout(() => { if (t.isConnected) { t.classList.remove("armed"); t.textContent = "Delete"; } }, 3000); return; }
+    const gone = L.splice(i, 1)[0]; if (editing && editing.link === gone) editing = null; prune(); markDirty(); return;
+  }
+  if (t.id === "ask-go") return ask(t);
+  if (t.id === "save") return save(t);
+});
+
+/* ---------- Tell Claude ---------- */
+async function ask(btn){
+  const req = $("#ask-text").value.trim();
+  const said = $("#said");
+  if (!req) { said.hidden = false; said.textContent = "Type what you want changed first."; return; }
+  btn.disabled = true; btn.textContent = "Claude is working…"; said.hidden = true;
+  const prompt = `You manage the data for Clay's personal page of referral and affiliate links ("Mitch Links"). Friends visit it to use his referral links and codes.
+Current data as JSON:
+${JSON.stringify({ categories: data.categories, links: data.links })}
+
+Clay's request:
+"""${req}"""
+
+Apply the request and return ONLY a JSON object: {"categories": [...], "links": [...], "summary": "..."}.
+Rules:
+- Keep every link and category the request doesn't touch exactly as it is, in the same order.
+- Each link has: id (short lowercase slug, unique), cat (a category id), name, url (full https URL), what (one short casual first-person sentence), perk (short, or ""), code (the referral code, or "" if none), example (false for anything Clay adds or edits), headline (short tagline in the style of the product's homepage, max 40 chars), bg, fg, accent (#RRGGBB colors approximating the product's website header background, header text, and brand/button color).
+- Each category has: id (short lowercase slug) and label. Only keep categories that still have links. Add a category if a new link needs one.
+- Never invent referral codes, URLs or signup bonuses Clay didn't give. The url must be Clay's own referral link when he gives one. If he gives only a code, keep the current url and say in the summary he should paste his referral link from the app's invite screen.
+- "summary": one or two plain sentences telling Clay what you changed, or what you need from him if the request is unclear (then leave the data unchanged).`;
+  try {
+    const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST",
+      headers: { "x-api-key": ak, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true", "content-type": "application/json" },
+      body: JSON.stringify({ model: MODEL, max_tokens: 8000, messages: [{ role: "user", content: prompt }] }) });
+    if (!r.ok) throw { status: r.status };
+    const j = await r.json();
+    const text = (j.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+    const out = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
+    if (!Array.isArray(out.links) || !Array.isArray(out.categories) || !out.links.every(l => l && l.name && l.cat)) throw { shape: true };
+    const seen = new Set();
+    const links = out.links.map(l => { let id = slug(l.id || l.name); while (seen.has(id)) id += "-2"; seen.add(id);
+      return { id, cat: slug(l.cat), name: String(l.name), url: String(l.url || ""), what: String(l.what || ""), perk: String(l.perk || ""),
+        code: String(l.code || ""), example: !!l.example, bg: hex(l.bg) || "#FFFFFF", fg: hex(l.fg) || "#111111", accent: hex(l.accent) || "#2340D9", headline: String(l.headline || "") }; });
+    const cats = out.categories.filter(c => c && c.label).map(c => ({ id: slug(c.id || c.label), label: String(c.label) }));
+    links.forEach(l => { if (!cats.some(c => c.id === l.cat)) cats.push({ id: l.cat, label: l.cat.replace(/-/g," ").replace(/\b\w/g, m => m.toUpperCase()) }); });
+    const changed = JSON.stringify([cats, links]) !== JSON.stringify([data.categories, data.links]);
+    if (changed) { data.categories = cats; data.links = links; prune(); editing = null; $("#ask-text").value = ""; markDirty(); }
+    said.textContent = (out.summary || (changed ? "Done." : "Nothing changed.")) + (changed ? " Check the list below, then tap Save and publish." : "");
+  } catch (err) {
+    said.textContent = err && (err.status === 401 || err.status === 403) ? "Your Claude API key didn't work. Tap Change keys at the bottom to fix it."
+      : err && err.status === 429 ? "Too many requests. Wait a minute and try again."
+      : err && err.status === 400 ? "Claude couldn't take that request. Check your API key has credit at console.anthropic.com."
+      : "Claude couldn't make that change. Try saying it differently, or edit the link by hand below.";
+  }
+  said.hidden = false; btn.disabled = false; btn.textContent = "Make the change";
+}
+
+/* ---------- save to GitHub ---------- */
+async function save(btn){
+  busy = true; btn.disabled = true; btn.textContent = "Saving…"; setMsg("");
+  data.updated = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const json = JSON.stringify(data, null, 1).replace(/</g, "\\u003c");
+  const next = html.replace(BLOCK, (m, a, b, c) => a + json + c);
+  try {
+    const r = await api("/contents/" + FILE, { method: "PUT", body: JSON.stringify({ message: "Update links from admin page", content: b64enc(next), sha, branch: BRANCH }) });
+    sha = r.content.sha; html = next; dirty = false;
+    setMsg("Saved. mitchlinks.ca updates in about a minute.", "ok");
+  } catch (e) {
+    setMsg(e.status === 409 ? "The site changed somewhere else since you opened this. Reload the page and make your change again."
+      : e.status === 401 || e.status === 403 ? "Your GitHub key can't save. It needs Contents: Read and write on mitch-links."
+      : "Saving didn't go through. Try again in a moment.", "err");
+  }
+  busy = false; btn.textContent = "Save and publish"; render();
+}
+window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+start();
+})();
+</script>
+</body>
+</html>

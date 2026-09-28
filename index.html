@@ -563,7 +563,7 @@ async function save(btn){
 }
 
 let adminCheck = null;
-if (!window.claude) $("#login").hidden = true;   // on the public website (outside Claude) there is no editor
+if (!window.claude) $("#login").addEventListener("click", e => { e.stopImmediatePropagation(); location.href = "/admin/"; });   // on the public website, the editor lives at /admin
 $("#login").addEventListener("click", async () => {
   const note = $("#note");
   note.hidden = false; note.textContent = "Checking your account…";
