@@ -60,8 +60,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .what{margin:0;color:var(--muted);font-size:15px}
 .perk{margin:0;font-weight:700;font-size:14px}
 .go{margin-top:auto;padding-top:8px;font:700 14px/1 var(--body);color:var(--ink);width:max-content;max-width:100%;overflow-wrap:anywhere;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:4px}
-.codebox{border-left:3px dashed var(--edge);padding:16px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:10px;min-width:150px;text-align:center}
+.codebox{border-left:3px dashed var(--edge);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:10px;min-width:150px;text-align:center}
 .copy{font:400 14px/1 var(--display);text-transform:uppercase;padding:12px 14px;background:#111;color:#fff;border:3px solid var(--edge);cursor:pointer;box-shadow:3px 3px 0 var(--yellow);transition:transform .1s,box-shadow .1s;overflow-wrap:anywhere}
+.copy.mini{font-size:12px;padding:9px 12px;background:var(--paper);color:var(--ink);border:3px solid var(--edge);box-shadow:3px 3px 0 var(--shadow)}
+.actions{margin-top:auto;padding-top:10px;display:flex;align-items:center;gap:10px}
+.cta{display:block;text-align:center;text-decoration:none;font:400 14px/1.15 var(--display);text-transform:uppercase;padding:14px 14px;background:#111;color:#fff;border:3px solid var(--edge);box-shadow:3px 3px 0 var(--yellow);transition:transform .1s,box-shadow .1s;overflow-wrap:anywhere}
+.cta:hover{background:var(--blue);color:#fff}
+.cta:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--yellow)}
+.dom{font-size:12px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
 .copy.done{background:var(--yellow);color:#111;border-color:#111;animation:pop .35s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.12) rotate(-2deg)}100%{transform:scale(1)}}
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
@@ -206,16 +212,16 @@ function snippet(l){
 }
 function card(l){
   const code = l.code
-    ? `<button class="copy" id="copy-${esc(l.id)}" data-code="${esc(l.code)}">Copy code</button>`
-    : `<div class="nocode">No code needed.<br>The link does it.</div>`;
+    ? `<button class="copy mini" id="copy-${esc(l.id)}" data-code="${esc(l.code)}">Copy code</button>`
+    : `<span class="nocode">No code needed. The link does it.</span>`;
   return `<article class="card">${snippet(l)}
     <div class="info">
       <h3 class="name">${esc(l.name)}${l.example ? '<span class="tag">EXAMPLE</span>' : ''}</h3>
       ${l.what ? `<p class="what">${esc(l.what)}</p>` : ''}
       ${l.perk ? `<p class="perk">${esc(l.perk)}</p>` : ''}
-      <a class="go" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">Go to ${esc(domainOf(l.url))} ↗</a>
+      <div class="actions">${code}</div>
     </div>
-    <div class="codebox">${code}</div></article>`;
+    <div class="codebox"><a class="cta" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener" data-code="${esc(l.code || "")}">Go to ${esc(l.name)} ↗</a><span class="dom">${esc(domainOf(l.url))}</span></div></article>`;
 }
 function render(){
   const cats = data.categories;
@@ -235,6 +241,9 @@ $("#filters").addEventListener("click", e => {
   render();
 });
 $("#main").addEventListener("click", e => {
+  const go = e.target.closest(".cta");
+  // Tapping "Go to" also puts the code on the clipboard, in case the site asks for it
+  if (go && go.dataset.code) { try { navigator.clipboard.writeText(go.dataset.code).catch(() => {}); } catch(err) {} return; }
   const b = e.target.closest(".copy"); if (!b) return;
   const ok = () => { b.textContent = "Copied!"; b.classList.remove("done"); void b.offsetWidth; b.classList.add("done"); confetti(b); catThanks(b); setTimeout(() => { b.textContent = "Copy code"; b.classList.remove("done"); }, 1600); };
   const fallback = () => { b.textContent = b.dataset.code; b.style.userSelect = "all"; };
